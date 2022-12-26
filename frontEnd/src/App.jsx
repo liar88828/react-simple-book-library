@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import axios from 'axios';
-import './App.css';
+import React from 'react';
+import UserList from "./component/UserList.jsx";
 
 function App() {
 
-  return (
-    <div className="App">
-      hello
-    </div>
-  );
+	return (
+		<div className='App'>
+			<UserList/>
+		</div>
+	);
 }
 
 export default App;
