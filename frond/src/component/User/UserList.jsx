@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {Link, Outlet} from "react-router-dom";
 
 function UserList() {
 	const [users, setUsers] = useState([]);
 
 	useEffect(() => {
-		getUsers();
+		getUsers().then(res => {
+			console.log(res)
+		})
 	}, []);
-
 
 	const getUsers = async () => {
 		const response =
@@ -16,11 +18,21 @@ function UserList() {
 		console.log(response.data)
 		setUsers(response.data)
 	}
+
+	const deleteUser = async (id) => {
+		try {
+			await axios.delete(`http://localhost:5000/users/${id}`)
+			getUsers()
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	return (
 		<div className={'columns mt-5 is-centered'}>
 			<div className='column is-half'>
-				<h1>Lorem ipsum dolor sit amet.
-				</h1>
+
+				<Link to={'add'} className={'button'}> Add New</Link>
 
 				<table className={'table is-striped is fullwidth'}>
 					<thead>
@@ -41,16 +53,24 @@ function UserList() {
 							<td>{user.email}</td>
 							<td>{user.gender}</td>
 							<td>
-								<button className={'button  is-small is-info mr-2'}>edit</button>
-								<button className={'button  is-small is-danger'}>delete</button>
+								<Link
+									to={`edit/${user.id}`}
+									className={'button  is-small is-info mr-2'}>
+									edit
+								</Link>
+								<button
+									onClick={() => deleteUser(user.id)}
+									className='button is-small is-danger'
+								>
+									Delete
+								</button>
 							</td>
 						</tr>
 					))}
-
 					</tbody>
 				</table>
-
 			</div>
+			<Outlet/>
 		</div>
 	);
 }

@@ -1,0 +1,69 @@
+// User
+GET http://localhost:5000/users
+
+###
+GET http://localhost:5000/users/1
+
+###
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "name": "Jhon Doe",
+  "email": "jhon@gmail.com",
+  "gender": "male"
+}
+
+###
+PATCH http://localhost:5000/users/1
+Content-Type: application/json
+
+{
+  "name": "mmmmmm Doe",
+  "email": "mmmm@gmail.com",
+  "gender": "male"
+}
+
+###
+DELETE http://localhost:5000/users/2
+
+// Book
+###
+GET http://localhost:5000/books
+###
+
+POST http://localhost:5000/books
+Content-Type: application/json
+
+{
+  "book": "aaaaa",
+  "age": "2018",
+  "stock": "1"
+}
+
+###
+GET http://localhost:5000/books/1
+
+###
+PATCH http://localhost:5000/books/1
+Content-Type: application/json
+
+{
+  "name": "Jhon asu",
+  "age": "2018",
+  "stock": "3"
+}
+
+###
+DELETE http://localhost:5000/books/2
+
+###
+
+POST http://localhost:5000/pinjams
+Content-Type: application/json
+
+{
+
+  "alasan":"telat",
+  "denda": 1000
+}
